@@ -1,0 +1,12 @@
+---
+- name: install apk repositories
+  template: src=apk/repositories.j2 dest=/etc/apk/repositories mode=0644
+  become: yes
+
+- name: update apk cache
+  apk: update_cache=yes
+  become: yes
+
+- name: upgrade all apk packages
+  apk: upgrade=yes
+  become: yes

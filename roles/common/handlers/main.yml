@@ -1,0 +1,4 @@
+---
+- name: update-extlinux
+  command: /sbin/update-extlinux
+  become: yes

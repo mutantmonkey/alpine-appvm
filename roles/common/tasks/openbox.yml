@@ -1,0 +1,43 @@
+---
+- name: install openbox packages
+  apk: name={{ item }} state=latest
+  with_items:
+  - openbox
+  - py-xdg
+  become: yes
+  tags: packages
+
+- name: install Xresources
+  copy: src=Xresources dest=/home/{{ user }}/.Xresources mode=0644
+  become: yes
+  become_user: "{{ user }}"
+
+- name: install Xkbmap
+  copy: src=Xkbmap dest=/home/{{ user }}/.Xkbmap mode=0644
+  become: yes
+  become_user: "{{ user }}"
+
+- name: install xinitrc
+  copy: src=xinitrc.sh dest=/home/{{ user }}/.xinitrc mode=0755
+  become: yes
+  become_user: "{{ user }}"
+
+- name: create config directory
+  file: dest=/home/{{ user }}/.config mode=0755 state=directory
+  become: yes
+  become_user: "{{ user }}"
+
+- name: create openbox config directory
+  file: dest=/home/{{ user }}/.config/openbox mode=0755 state=directory
+  become: yes
+  become_user: "{{ user }}"
+
+- name: install openbox rc.xml
+  copy: src=openbox/rc.xml dest=/home/{{ user }}/.config/openbox/rc.xml
+  become: yes
+  become_user: "{{ user }}"
+
+- name: install openbox menu.xml
+  copy: src=openbox/menu.xml dest=/home/{{ user }}/.config/openbox/menu.xml
+  become: yes
+  become_user: "{{ user }}"

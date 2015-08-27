@@ -1,0 +1,13 @@
+---
+- name: install spice-vdagent
+  apk: name=spice-vdagent state=latest
+  become: yes
+  tags: packages
+
+- name: enable spice-vdagentd
+  service: name=spice-vdagentd enabled=yes
+  become: yes
+
+- name: start spice-vdagentd
+  service: name=spice-vdagentd state=started
+  become: yes

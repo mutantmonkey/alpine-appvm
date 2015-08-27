@@ -1,0 +1,20 @@
+---
+- name: install xfce4-terminal
+  apk: name=xfce4-terminal state=latest
+  become: yes
+  tags: packages
+
+- name: create config dirs
+  file: dest=/home/{{ user }}/{{ item }} state=directory
+  with_items:
+  - .config
+  - .config/xfce4
+  - .config/xfce4/terminal
+  become: yes
+  become_user: "{{ user }}"
+
+- name: install terminalrc
+  copy: src=xfce4/terminal/terminalrc
+        dest=/home/{{ user }}/.config/xfce4/terminal/terminalrc
+  become: yes
+  become_user: "{{ user }}"

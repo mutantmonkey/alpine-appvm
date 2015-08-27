@@ -1,0 +1,35 @@
+---
+# XXX: thiis is broken in alpine, so the next two tasks are hacks
+#- name: create primary user
+#  user: name={{ user }} uid=1000 group=users state=present
+#  become: yes
+
+- name: check for primary user homediro
+  file: dest="/home/{{ user }}"
+  become: yes
+  register: homedir_test
+  ignore_errors: yes
+
+- name: create primary user (call adduser)
+  command: /usr/sbin/adduser -D "{{ user }}"
+  when: homedir_test.state == "absent"
+  become: yes
+
+- name: mount /home from specified location
+  mount: name=/home src="{{ appvm_homedir_dev }}" fstype=ext4 passno=2
+         opts="rw,nosuid,nodev,relatime,data=ordered" state=mounted
+  when: appvm_homedir_dev is defined
+  become: yes
+
+- include: apk.yml
+- include: xorg.yml
+- include: spice.yml
+- include: openbox.yml
+- include: xfce4terminal.yml
+- include: lxdm.yml
+- include: ipv6.yml
+- include: extlinux.yml
+
+- name: disable sshd service
+  service: name=sshd enabled=no
+  become: yes

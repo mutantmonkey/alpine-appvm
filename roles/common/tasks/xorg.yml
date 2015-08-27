@@ -1,0 +1,74 @@
+---
+- name: install xorg packages
+  apk: name={{ item }} state=latest
+  with_items:
+  - xorg-server
+  - xf86-video-vesa
+  - xf86-video-modesetting
+  - xf86-video-qxl
+  - xf86-input-evdev
+  - xf86-input-mouse
+  - xf86-input-keyboard
+  - mesa-dri-swrast
+  - udev
+  - xinit
+  - xrandr
+  - xrdb
+  - xsetroot
+  - dbus
+  - dbus-glib
+  - ttf-dejavu
+  - dmz-cursor-theme
+  - gnome-themes-standard
+  - adwaita-gtk2-theme
+  - adwaita-icon-theme
+  become: yes
+  tags: packages
+
+- name: disable mdev
+  service: name=mdev runlevel=sysinit enabled=no
+  become: yes
+
+- name: enable udev
+  service: name=udev runlevel=sysinit enabled=yes
+  become: yes
+
+- name: enable udev-postmount
+  service: name=udev enabled=yes
+  become: yes
+
+- name: start udev
+  service: name={{ item }} state=started
+  with_items:
+  - udev
+  - udev-postmount
+  become: yes
+
+- name: install infinality-settings.sh
+  copy: src=X11/xinit/xinitrc.d/infinality-settings.sh
+        dest=/etc/X11/xinit/xinitrc.d/infinality-settings.sh mode=0755
+  become: yes
+
+- name: install 20-qxl.conf
+  copy: src=20-qxl.conf dest=/etc/X11/xorg.conf.d/20-qxl.conf mode=0644
+  notify: reboot system
+  become: yes
+
+- name: install gtkrc-2.0
+  copy: src=gtkrc-2.0 dest=/home/{{ user }}/.gtkrc-2.0 mode=0644
+  become: yes
+  become_user: "{{ user }}"
+
+- name: create gtk-3.0 config directory
+  file: dest=/home/{{ user }}/{{ item }} mode=0755 state=directory
+  with_items:
+  - .config
+  - .config/gtk-3.0
+  become: yes
+  become_user: "{{ user }}"
+
+- name: install gtk-3.0 settings.ini
+  copy: src=gtk-3.0/settings.ini
+        dest=/home/{{ user }}/.config/gtk-3.0/settings.ini mode=0644
+  become: yes
+  become_user: "{{ user }}"

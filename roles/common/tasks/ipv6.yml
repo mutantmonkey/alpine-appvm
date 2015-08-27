@@ -1,0 +1,5 @@
+---
+- name: enable ipv6 privacy extensions on boot
+  copy: src=sysctl.d/40-ipv6.conf dest=/etc/sysctl.d/40-ipv6.conf
+        mode=0644 owner=root group=root
+  become: yes

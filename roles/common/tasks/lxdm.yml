@@ -1,0 +1,14 @@
+---
+- name: install lxdm
+  apk: name=lxdm state=latest
+  become: yes
+  tags: packages
+
+- name: install lxdm config
+  template: src=lxdm.conf.j2 dest=/etc/lxdm/lxdm.conf owner=root group=root
+            mode=0644
+  become: yes
+
+- name: enable lxdm
+  service: name=lxdm enabled=yes
+  become: yes

@@ -1,0 +1,4 @@
+---
+- hosts: appvm-browser
+  roles:
+  - browser

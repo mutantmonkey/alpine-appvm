@@ -1,0 +1,12 @@
+---
+- name: set timeout to one second
+  lineinfile: dest=/etc/update-extlinux.conf regexp="^timeout="
+              line='timeout=1' state=present
+  become: yes
+  notify: update-extlinux
+
+- name: add qxl.modeset=0 to kernel args
+  lineinfile: dest=/etc/update-extlinux.conf regexp="^default_kernel_opts="
+              line='default_kernel_opts="quiet qxl.modeset=0"' state=present
+  become: yes
+  notify: update-extlinux

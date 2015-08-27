@@ -1,0 +1,23 @@
+---
+- name: install firefox packages
+  apk: name={{ item }} state=present
+  with_items:
+  - firefox
+  - hunspell-en
+  - gstreamer1
+  - gst-plugins-base1
+  - gst-plugins-good1
+  - gst-plugins-bad1
+  - gst-plugins-ugly1
+  become: yes
+  tags: packages
+
+- name: configure firefox to autostart
+  copy: src=autostart dest=/home/{{ user }}/.config/openbox/autostart mode=0644
+  become: yes
+  become_user: "{{ user }}"
+
+- name: install openbox menu.xml
+  copy: src=menu.xml dest=/home/{{ user }}/.config/openbox/menu.xml mode=0644
+  become: yes
+  become_user: "{{ user }}"
