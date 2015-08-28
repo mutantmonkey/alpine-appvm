@@ -4,7 +4,7 @@
 #  user: name={{ user }} uid=1000 group=users state=present
 #  become: yes
 
-- name: check for primary user homediro
+- name: check for primary user homedir
   file: dest="/home/{{ user }}"
   become: yes
   register: homedir_test
