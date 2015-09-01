@@ -21,6 +21,10 @@
   when: appvm_homedir_dev is defined
   become: yes
 
+- name: disable saving/loading random seed
+  service: name=urandom runlevel=boot enabled=no
+  become: yes
+
 - include: apk.yml
 - include: xorg.yml
 - include: spice.yml

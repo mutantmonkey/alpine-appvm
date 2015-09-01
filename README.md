@@ -8,7 +8,8 @@ may be added in the future.
 * [ansible](https://github.com/ansible/ansible) 2.0+ (build from git for now)
 * An existing Alpine Linux install; you can use the provided setup-alpine.conf
   to help with this. Simply call `setup-alpine -f setup-alpine.conf` after
-  copying the file over.
+  copying the file over. When creating the VM, you should add a RNG that passes
+  /dev/random from the host to the guest to improve the available entropy pool.
 
 ## Usage
 * Create an inventory file. Follow the [Ansible
