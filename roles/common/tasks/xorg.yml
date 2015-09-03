@@ -50,7 +50,8 @@
   become: yes
 
 - name: install 20-qxl.conf
-  copy: src=20-qxl.conf dest=/etc/X11/xorg.conf.d/20-qxl.conf mode=0644
+  copy: src=X11/xorg.conf.d/20-qxl.conf
+        dest=/etc/X11/xorg.conf.d/20-qxl.conf mode=0644
   notify: reboot system
   become: yes
 
