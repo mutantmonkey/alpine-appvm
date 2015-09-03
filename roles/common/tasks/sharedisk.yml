@@ -1,0 +1,12 @@
+---
+- name: disable saving/loading random seed
+  service: name=urandom runlevel=boot enabled=no
+  become: yes
+
+- name: install an initscript that generates a unique D-BUS machine ID
+  copy: src=init.d/dbus-machineid dest=/etc/init.d/dbus-machineid mode=0755
+  become: yes
+
+- name: enable dbus-machineid service
+  service: name=dbus-machineid enabled=yes
+  become: yes

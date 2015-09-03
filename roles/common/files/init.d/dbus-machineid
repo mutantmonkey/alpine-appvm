@@ -1,0 +1,15 @@
+#!/sbin/openrc-run
+
+depend() {
+	need localmount
+	after bootmisc
+	before dbus
+}
+
+start() {
+	ebegin "Generating a D-BUS machine ID"
+	/usr/bin/dbus-uuidgen --ensure=/run/machine-id
+
+	[ ! -h /etc/machine-id ] && ln -sf /run/machine-id /etc/machine-id
+	[ ! -h /var/lib/dbus/machine-id ] && ln -sf /run/machine-id /var/lib/dbus/machine-id
+}
