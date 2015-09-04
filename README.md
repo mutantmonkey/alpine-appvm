@@ -13,7 +13,6 @@ may be added in the future.
 
 ## Usage
 * Create an inventory file. Follow the [Ansible
-  documentation](http://docs.ansible.com) for help with this. You will need to
-  define, at minimum, a user variable for the host.
+  documentation](http://docs.ansible.com) for help with this.
 * Copy example.yml to a new file and modify as desired.
 * Run the playbook using ansible-playbook.
