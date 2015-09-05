@@ -8,11 +8,11 @@ may be added in the future.
 ## Getting Started
 
 The following instructions assume your host machine is running Arch Linux. 
-Support for other distibutions may be added in the future.
+Support for other distributions may be added in the future.
 
 Download and install the basic prerequisites:
 ~~~
-$ pacman -S spice qemu python2
+$ sudo pacman -S spice qemu python2
 ~~~
 
 Add a record for "appvm-browser" to the end of your "~/.ssh/config" file
