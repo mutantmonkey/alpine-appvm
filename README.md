@@ -1,7 +1,7 @@
 # Alpine-based AppVMs for QEMU
 
 This is a playbook that helps you create AppVMs using Alpine Linux. Right now,
-only QEMU is supposed with SPICE enabled, but support for other environments
+only QEMU is supported with SPICE enabled, but support for other environments
 may be added in the future.
 
 ## Prerequisites
