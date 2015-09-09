@@ -2,6 +2,7 @@
 - name: install xorg packages
   apk: name={{ item }} state=latest
   with_items:
+  - alsa-utils
   - xorg-server
   - xf86-video-vesa
   - xf86-video-modesetting

@@ -11,7 +11,7 @@
   ignore_errors: yes
 
 - name: create primary user (call adduser)
-  command: /usr/sbin/adduser -D "{{ user }}"
+  command: /usr/sbin/adduser -D -G audio "{{ user }}"
   when: homedir_test.state == "absent"
   become: yes
 
