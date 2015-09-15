@@ -19,6 +19,7 @@
   - dbus
   - dbus-glib
   - ttf-dejavu
+  - ttf-symbola
   - dmz-cursor-theme
   - gnome-themes-standard
   - adwaita-gtk2-theme
