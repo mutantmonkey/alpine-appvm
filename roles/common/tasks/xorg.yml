@@ -2,6 +2,7 @@
 - name: install xorg packages
   apk: name={{ item }} state=latest
   with_items:
+  - alsa-utils
   - xorg-server
   - xf86-video-vesa
   - xf86-video-modesetting
@@ -18,6 +19,7 @@
   - dbus
   - dbus-glib
   - ttf-dejavu
+  - ttf-symbola
   - dmz-cursor-theme
   - gnome-themes-standard
   - adwaita-gtk2-theme
