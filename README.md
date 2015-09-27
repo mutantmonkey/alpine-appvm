@@ -12,7 +12,7 @@ Support for other distributions may be added in the future.
 
 Download and install the basic prerequisites:
 ~~~
-$ sudo pacman -S spice qemu python2
+$ sudo pacman -S spice qemu python2 sshpass
 ~~~
 
 Add a record for "appvm-browser" to the end of your "~/.ssh/config" file
