@@ -5,14 +5,15 @@ only QEMU is supported with SPICE enabled, but support for other environments
 may be added in the future.
 
 
-## Getting Started
+## Getting Started (QEMU without libvirt)
 
-The following instructions assume your host machine is running Arch Linux. 
-Support for other distributions may be added in the future.
+The following instructions assume your host machine is running Arch Linux and
+that you wish to run QEMU without using libvirt. Support for other
+distributions may be added in the future.
 
 Download and install the basic prerequisites:
 ~~~
-$ sudo pacman -S spice qemu python2 sshpass
+$ sudo pacman -S ansible spice qemu python2 sshpass
 ~~~
 
 Add a record for "appvm-browser" to the end of your "~/.ssh/config" file
@@ -23,14 +24,6 @@ Host appvm-browser
 HostName localhost
 User root
 Port 10022
-~~~
-
-Download and install Ansible (>= v2.0.0):
-~~~
-$ git clone git://github.com/ansible/ansible.git --recursive
-$ cd ./ansible
-$ sudo python2 setup.py install
-$ source ./hacking/env-setup
 ~~~
 
 Download the Alpine Linux 64-bit ISO and verify its signature:
@@ -54,7 +47,7 @@ Primary key fingerprint: 0482 D840 22F5 2DF1 C4E7  CD43 293A CD09 07D9 495A
 
 Clone the alpine-appvm.git repo and navigate to it:
 ~~~
-$ git clone https://github.com/andy11/alpine-appvm.git
+$ git clone https://github.com/mutantmonkey/alpine-appvm.git
 $ cd ./alpine-appvm
 ~~~
 
