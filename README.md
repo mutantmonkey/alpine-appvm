@@ -1,5 +1,10 @@
 # Alpine-based AppVMs for QEMU
 
+**As of August 2016, I no longer recommend the use of this playbook. Alpine
+Linux has consistently failed to provide Firefox updates in a timely manner and
+is currently two major releases behind. Although I have a lot of hope for
+Alpine, it is unsafe to use it to run Firefox at this time.**
+
 This is a playbook that helps you create AppVMs using Alpine Linux. Right now,
 only QEMU is supported with SPICE enabled, but support for other environments
 may be added in the future.
